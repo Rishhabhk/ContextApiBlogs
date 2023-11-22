@@ -9,8 +9,7 @@ export default function AppContextProvider({children}){
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(null);
 
-
-    async function fetchData(page){
+    const fetchData = async (page) => {
         setLoading(true);
         let url = `${baseUrl}?page=${page}`;
         try{
@@ -24,8 +23,24 @@ export default function AppContextProvider({children}){
             alert(e);
         }
         setLoading(false);
-        
     }
+
+    // async function fetchData(page){
+    //     setLoading(true);
+    //     let url = `${baseUrl}?page=${page}`;
+    //     try{
+    //         const result = await fetch(url);
+    //         const data = await result.json();
+    //         setPage(data?.page);
+    //         setPosts(data?.posts);
+    //         setTotalPages(data?.totalPages);
+    //     }
+    //     catch(e){
+    //         alert(e);
+    //     }
+    //     setLoading(false);
+        
+    // }
 
     function pageChangeHandler(page){
         setPage(page);
